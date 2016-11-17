@@ -204,7 +204,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AABEC9DA-93D7-4F98-A242-F61C5857407D" translatesAutoresizingMaskIntoConstraints="NO" id="JHh-UP-0Lz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2A50D66C-ECD5-4272-8D26-0CB5B9AD0C6F" translatesAutoresizingMaskIntoConstraints="NO" id="JHh-UP-0Lz">
                                 <frame key="frameInset" minX="10" minY="37" width="66" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -279,7 +279,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="275" id="WTb-ZQ-43U"/>
                                                     </constraints>
-                                                    <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLa</string>
+                                                    <string key="text">elLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLa</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -346,7 +346,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AABEC9DA-93D7-4F98-A242-F61C5857407D" width="396" height="594">
+        <image name="2A50D66C-ECD5-4272-8D26-0CB5B9AD0C6F" width="396" height="594">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -66,6 +66,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
                 print(error!)
                 return
             }
+            
             guard let data = data else {
                 // pas aan met een alert voor de user
                 print("Data is empty")
