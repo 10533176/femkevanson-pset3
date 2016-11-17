@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var movieTitle: String?
     var movieYear: String?
+    var movieImage: String? 
     
     let test = ["swift", "java", "ruby", "json"]
     

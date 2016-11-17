@@ -24,6 +24,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
     var movieYear = String()
     var movieTitleSend = String()
     var movieYearSend = String()
+    var imagehttps = String()
     
     var dictionary = [
     "Title": "sblabla"
@@ -81,11 +82,35 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
                 self.movieYear = ((json as AnyObject).value(forKey: "Year") as! String?)!
                 self.movieDescription = ((json as AnyObject).value(forKey: "Plot") as! String?)!
                 print (self.movieTitle)
+                self.imagehttps = ((json as AnyObject).value(forKey: "Poster") as! String?)!
                 self.tableView.reloadData()
                 print (json)
             }
         }
         
+        task.resume()
+    }
+    
+    func loadImageFromUrl(url: String, view: UIImageView){
+        
+        // Create Url from string
+        let url = NSURL(string: url)!
+        
+        // Download task:
+        // - sharedSession = global NSURLCache, NSHTTPCookieStorage and NSURLCredentialStorage objects.
+        
+        let task = URLSession.shared.dataTask(with: url as URL) { (responseData, responseUrl, error) -> Void in
+            // if responseData is not null...
+            if let data = responseData{
+                
+                // execute in UI thread
+                DispatchQueue.main.async(execute: { () -> Void in
+                    view.image = UIImage(data: data)
+                })
+            }
+        }
+        
+        // Run task
         task.resume()
     }
     
@@ -104,6 +129,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         
         cell.movieTitle.text = movieTitle
         cell.movieDescription.text = movieDescription
+        loadImageFromUrl(url: imagehttps, view: cell.movieImage)
         return cell
     }
 
@@ -117,6 +143,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         if let nextView = segue.destination as? ViewController {
             nextView.movieTitle = movieTitleSend
             nextView.movieYear = movieYearSend
+            nextView.movieImage = imagehttps
         }
     }
 
