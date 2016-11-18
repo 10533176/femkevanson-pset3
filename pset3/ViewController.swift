@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
-    var movieTitle: String?
+    var movieTitle = ""
     var movieYear: String?
     var movieImage = "http://clipartix.com/wp-content/uploads/2016/08/Cliparts-about-questions-clipart-clipart-kid-3.jpeg"
     var movieDescription: String?
@@ -28,32 +28,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // put movietitle in the watch list
-            arrayWatchList.insert(movieTitle!, at: 0)
+        if movieTitle.isEmpty {
+            self.tableView.reloadData()
+        }
+        
+        else {
+            // put movietitle in the watch list
+            arrayWatchList.insert(movieTitle, at: 0)
             arrayImage.insert(movieImage, at: 0)
             arrayYear.insert(movieYear!, at: 0)
             arrayDescription.insert(movieDescription!, at: 0)
+        }
         
-            
-            // read from stored data
-            let defaults = UserDefaults.standard
-            if let name = defaults.stringArray(forKey: "title"){
-                print (name)
-                arrayWatchList.insert(contentsOf: name, at: 0)
-                print (arrayWatchList)
-            }
-            
-            if let year = defaults.stringArray(forKey: "year") {
-                arrayYear.insert(contentsOf: year, at: 0)
-            }
-            
-            if let image = defaults.stringArray(forKey: "image") {
-                arrayImage.insert(contentsOf: image, at: 0)
-            }
         
-            if let description = defaults.stringArray(forKey: "description") {
-                arrayDescription.insert(contentsOf: description, at: 0)
-            }
+        // read from stored data
+        let defaults = UserDefaults.standard
+        if let name = defaults.stringArray(forKey: "title"){
+            print (name)
+            arrayWatchList.insert(contentsOf: name, at: 0)
+            print (arrayWatchList)
+        }
+        
+        if let year = defaults.stringArray(forKey: "year") {
+            arrayYear.insert(contentsOf: year, at: 0)
+        }
+        
+        if let image = defaults.stringArray(forKey: "image") {
+            arrayImage.insert(contentsOf: image, at: 0)
+        }
+        
+        if let description = defaults.stringArray(forKey: "description") {
+            arrayDescription.insert(contentsOf: description, at: 0)
+        }
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,6 +133,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let defaults = UserDefaults.standard
+        defaults.set(arrayWatchList, forKey: "title")
+        defaults.set(arrayYear, forKey: "year")
+        defaults.set(arrayImage, forKey: "image")
+        defaults.set(arrayDescription, forKey: "description")
+        
             if let nextView = segue.destination as? movieDescriptionViewController {
                 nextView.movietitle = arrayWatchList[self.tableView.indexPathForSelectedRow!.row]
                 nextView.movieYear = arrayYear[self.tableView.indexPathForSelectedRow!.row]
