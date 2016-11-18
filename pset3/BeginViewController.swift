@@ -13,10 +13,13 @@ class BeginViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var watchList: UIButton!
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //deleting the data
+        //if let bundle = Bundle.main.bundleIdentifier {
+          //  UserDefaults.standard.removePersistentDomain(forName: bundle)
+        //}
 
         // Do any additional setup after loading the view.
     }

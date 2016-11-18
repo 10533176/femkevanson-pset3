@@ -20,6 +20,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
     var movieDescription = String()
     var movieYear = String()
     var movieTitleSend = String()
+    var movieDescriptionSend = String()
     var movieYearSend = String()
     var imagehttps = String()
     var imagehttpsSend = String()
@@ -32,22 +33,25 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.isHidden = true
         addMovie.isHidden = true
 
-        // Do any additional setup after loading the view.
     }
     
     // when clicked on search, do httpsrequest
     @IBAction func searchAction(_ sender: AnyObject) {
         
+            // send the request
             requestHTTPS(title: filledInTitle.text!)
             tableView.isHidden = false
             addMovie.isHidden = false
         
+            // while loading
             movieTitle = "Loading..."
             movieDescription = ""
+            imagehttps = ""
             self.tableView.reloadData()
 
     }
     
+    //only passing data when add button is clicked.
     @IBAction func addMovie(_ sender: AnyObject) {
         
         addMovie.isHidden = true
@@ -55,6 +59,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         movieTitleSend = movieTitle
         movieYearSend = movieYear
         imagehttpsSend = imagehttps
+        movieDescriptionSend = movieDescription
     }
     
     // Make a HTTPS request
@@ -75,22 +80,22 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             let json = try! JSONSerialization.jsonObject(with: data, options: [])
-            print (json)
             
+            //give values to variables
             DispatchQueue.main.async {
                 self.movieTitle = ((json as AnyObject).value(forKey: "Title") as! String?)!
                 self.movieYear = ((json as AnyObject).value(forKey: "Year") as! String?)!
                 self.movieDescription = ((json as AnyObject).value(forKey: "Plot") as! String?)!
-                print (self.movieTitle)
                 self.imagehttps = ((json as AnyObject).value(forKey: "Poster") as! String?)!
                 self.tableView.reloadData()
-                print (json)
             }
         }
         
         task.resume()
     }
     
+    
+    // function to show immage
     func loadImageFromUrl(url: String, view: UIImageView){
         
         // Create Url from string
@@ -144,6 +149,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
             nextView.movieTitle = movieTitleSend
             nextView.movieYear = movieYearSend
             nextView.movieImage = imagehttpsSend
+            nextView.movieDescription = movieDescriptionSend
         }
     }
 
