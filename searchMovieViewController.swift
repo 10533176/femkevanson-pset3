@@ -11,8 +11,8 @@ import UIKit
 class searchMovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
 
-    @IBOutlet weak var filledInTitle: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filledInTitle: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var addMovie: UIButton!
 

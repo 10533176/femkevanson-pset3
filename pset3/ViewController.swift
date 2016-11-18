@@ -16,18 +16,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var movieYear: String?
     var movieImage = "http://clipartix.com/wp-content/uploads/2016/08/Cliparts-about-questions-clipart-clipart-kid-3.jpeg"
     
-    let test = ["swift", "java", "ruby", "json"]
+    var arrayWatchList = [String]()
+    var arrayYear = [String]()
+    var arrayImage = [String]()
     
-    let testDes = [
-        "swift": "sblabla",
-        "java": "jblabla",
-        "ruby": "srblabla",
-        "jason": "jblabla"
-    ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // put movietitle in the watch list
+        arrayWatchList.insert(movieTitle!, at: 0)
+        arrayImage.insert(movieImage, at: 0)
+        arrayYear.insert(movieYear!, at: 0)
+        
+        
+        // read from stored data
+        let defaults = UserDefaults.standard
+        if let name = defaults.stringArray(forKey: "title"){
+            print (name)
+            arrayWatchList.insert(contentsOf: name, at: 0)
+            print (arrayWatchList)
+        }
+        
+        if let year = defaults.stringArray(forKey: "year") {
+            arrayYear.insert(contentsOf: year, at: 0)
+        }
+        
+        if let image = defaults.stringArray(forKey: "image") {
+            arrayImage.insert(contentsOf: image, at: 0)
+        }
+        
+        // myDefaults.setValuesForKeys(arrayWatchList)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,11 +79,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         task.resume()
     }
     
-
+    // store arraywatchlist
+    @IBAction func addNewMovie(_ sender: AnyObject) {
+        let defaults = UserDefaults.standard
+        defaults.set(arrayWatchList, forKey: "title")
+        defaults.set(arrayYear, forKey: "year")
+        defaults.set(arrayImage, forKey: "image")
+    }
+    
     
     // specifies how number rows we want in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test.count
+        return arrayWatchList.count
     }
     
     // function that populates the cell. 
@@ -74,10 +100,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchListViewCell
         
-        cell.movieTitle.text = movieTitle
-        cell.movieDescription.text = movieYear
-        loadImageFromUrl(url: movieImage, view: cell.movieImage)
-
+        cell.movieTitle.text = arrayWatchList[indexPath.row]
+        cell.movieDescription.text = arrayYear[indexPath.row]
+        loadImageFromUrl(url: arrayImage[indexPath.row], view: cell.movieImage)
         return cell
         
     }

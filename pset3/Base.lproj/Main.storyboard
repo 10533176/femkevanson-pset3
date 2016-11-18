@@ -156,7 +156,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cch-xD-6bu" id="Foo-ZP-Mrf">
-                                            <frame key="frameInset" width="375" height="84"/>
+                                            <frame key="frameInset" width="375" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="La5-Rv-bqX">
@@ -179,19 +179,21 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="QSi-EY-OAb" firstAttribute="leading" secondItem="La5-Rv-bqX" secondAttribute="trailing" constant="8" id="1H0-gl-Lh5"/>
                                                 <constraint firstItem="QSi-EY-OAb" firstAttribute="leading" secondItem="La5-Rv-bqX" secondAttribute="trailing" constant="8" id="6kT-Ba-FmI"/>
-                                                <constraint firstItem="vH3-Hc-Fr7" firstAttribute="top" secondItem="QSi-EY-OAb" secondAttribute="bottom" constant="-7" id="7sV-mm-uVm"/>
+                                                <constraint firstItem="vH3-Hc-Fr7" firstAttribute="top" secondItem="QSi-EY-OAb" secondAttribute="bottom" constant="12" id="7sV-mm-uVm"/>
                                                 <constraint firstItem="La5-Rv-bqX" firstAttribute="leading" secondItem="Foo-ZP-Mrf" secondAttribute="leadingMargin" id="89g-9J-U2x"/>
+                                                <constraint firstItem="vH3-Hc-Fr7" firstAttribute="top" secondItem="QSi-EY-OAb" secondAttribute="bottom" constant="12" id="9fy-Aq-0XA"/>
                                                 <constraint firstItem="QSi-EY-OAb" firstAttribute="leading" secondItem="La5-Rv-bqX" secondAttribute="trailing" constant="8" symbolic="YES" id="JG2-TG-EhM"/>
-                                                <constraint firstItem="vH3-Hc-Fr7" firstAttribute="top" secondItem="QSi-EY-OAb" secondAttribute="bottom" constant="-7" id="Kig-AT-JOZ"/>
+                                                <constraint firstItem="vH3-Hc-Fr7" firstAttribute="top" secondItem="QSi-EY-OAb" secondAttribute="bottom" constant="12" id="Kig-AT-JOZ"/>
                                                 <constraint firstItem="La5-Rv-bqX" firstAttribute="top" secondItem="QSi-EY-OAb" secondAttribute="top" id="OZc-Oa-roO"/>
                                                 <constraint firstItem="La5-Rv-bqX" firstAttribute="bottom" secondItem="Foo-ZP-Mrf" secondAttribute="bottomMargin" constant="1" id="Rpy-ad-LuZ"/>
                                                 <constraint firstItem="QSi-EY-OAb" firstAttribute="leading" secondItem="vH3-Hc-Fr7" secondAttribute="leading" id="SiR-Jd-Jja"/>
                                                 <constraint firstItem="vH3-Hc-Fr7" firstAttribute="leading" secondItem="La5-Rv-bqX" secondAttribute="trailing" constant="8" id="SrF-p7-xok"/>
                                                 <constraint firstItem="La5-Rv-bqX" firstAttribute="top" secondItem="Foo-ZP-Mrf" secondAttribute="topMargin" id="TTM-6f-NTc"/>
                                                 <constraint firstItem="QSi-EY-OAb" firstAttribute="leading" secondItem="La5-Rv-bqX" secondAttribute="trailing" constant="8" id="VZd-hl-ykM"/>
-                                                <constraint firstItem="QSi-EY-OAb" firstAttribute="trailing" secondItem="vH3-Hc-Fr7" secondAttribute="trailing" constant="208" id="kBu-qB-RJL"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="vH3-Hc-Fr7" secondAttribute="bottom" constant="18" id="shi-af-fKI"/>
+                                                <constraint firstItem="QSi-EY-OAb" firstAttribute="trailing" secondItem="vH3-Hc-Fr7" secondAttribute="trailing" constant="196" id="kBu-qB-RJL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vH3-Hc-Fr7" secondAttribute="bottom" constant="-1" id="shi-af-fKI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -223,6 +225,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
+                                            <action selector="addNewMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AjX-YZ-GaR"/>
                                             <segue destination="Gtj-fV-1HV" kind="show" id="VhA-it-rMG"/>
                                         </connections>
                                     </button>
@@ -355,7 +358,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hhU-5O-nbx" id="1dp-3x-hom">
-                                            <frame key="frameInset" width="375" height="139"/>
+                                            <frame key="frameInset" width="375" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d2D-7M-Tae">
@@ -470,7 +473,7 @@
         <image name="popcorn-hi" width="396" height="594"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AWI-O5-Xl3"/>
-        <segue reference="zz5-KR-7Lz"/>
+        <segue reference="VhA-it-rMG"/>
+        <segue reference="IzO-jL-iPX"/>
     </inferredMetricsTieBreakers>
 </document>
