@@ -11,26 +11,21 @@ import UIKit
 class searchMovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
 
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filledInTitle: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var addMovie: UIButton!
 
-    
-    var titleMovie = String()
-    var test = ["swift", "java", "ruby", "json"]
     var movieTitle = String()
     var movieDescription = String()
     var movieYear = String()
     var movieTitleSend = String()
     var movieYearSend = String()
     var imagehttps = String()
-    
-    var dictionary = [
-    "Title": "sblabla"
-    ]
+    var imagehttpsSend = String()
     
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +41,10 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
             requestHTTPS(title: filledInTitle.text!)
             tableView.isHidden = false
             addMovie.isHidden = false
+        
+            movieTitle = "Loading..."
+            movieDescription = ""
+            self.tableView.reloadData()
 
     }
     
@@ -55,6 +54,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         
         movieTitleSend = movieTitle
         movieYearSend = movieYear
+        imagehttpsSend = imagehttps
     }
     
     // Make a HTTPS request
@@ -143,7 +143,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         if let nextView = segue.destination as? ViewController {
             nextView.movieTitle = movieTitleSend
             nextView.movieYear = movieYearSend
-            nextView.movieImage = imagehttps
+            nextView.movieImage = imagehttpsSend
         }
     }
 

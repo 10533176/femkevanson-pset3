@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF33702E1DDE516800C8DB69 /* BeginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF33702D1DDE516800C8DB69 /* BeginViewController.swift */; };
 		EF5E922F1DDB4343005D677B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E922E1DDB4343005D677B /* AppDelegate.swift */; };
 		EF5E92311DDB4343005D677B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E92301DDB4343005D677B /* ViewController.swift */; };
 		EF5E92341DDB4343005D677B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5E92321DDB4343005D677B /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF33702D1DDE516800C8DB69 /* BeginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeginViewController.swift; sourceTree = "<group>"; };
 		EF5E922B1DDB4343005D677B /* pset3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pset3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5E922E1DDB4343005D677B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF5E92301DDB4343005D677B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				EF5E92421DDB4580005D677B /* WatchListViewCell.swift */,
 				EFDB08A91DDCA40000FD9F3F /* searchMovieViewController.swift */,
 				EF5E92321DDB4343005D677B /* Main.storyboard */,
+				EF33702D1DDE516800C8DB69 /* BeginViewController.swift */,
 				EFA4F2651DDDD6F2000D7F95 /* searchListViewCell.swift */,
 				EF5E92351DDB4343005D677B /* Assets.xcassets */,
 				EF5E92371DDB4343005D677B /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF33702E1DDE516800C8DB69 /* BeginViewController.swift in Sources */,
 				EF5E92311DDB4343005D677B /* ViewController.swift in Sources */,
 				EF5E922F1DDB4343005D677B /* AppDelegate.swift in Sources */,
 				EF5E92431DDB4580005D677B /* WatchListViewCell.swift in Sources */,

@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var movieTitle: String?
     var movieYear: String?
-    var movieImage: String? 
+    var movieImage = "http://clipartix.com/wp-content/uploads/2016/08/Cliparts-about-questions-clipart-clipart-kid-3.jpeg"
     
     let test = ["swift", "java", "ruby", "json"]
     
@@ -36,6 +36,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    // load image
+    func loadImageFromUrl(url: String, view: UIImageView){
+        
+        // Create Url from string
+        let url = NSURL(string: url)!
+        
+        // Download task:
+        // - sharedSession = global NSURLCache, NSHTTPCookieStorage and NSURLCredentialStorage objects.
+        
+        let task = URLSession.shared.dataTask(with: url as URL) { (responseData, responseUrl, error) -> Void in
+            // if responseData is not null...
+            if let data = responseData{
+                
+                // execute in UI thread
+                DispatchQueue.main.async(execute: { () -> Void in
+                    view.image = UIImage(data: data)
+                })
+            }
+        }
+        
+        // Run task
+        task.resume()
+    }
+    
+
+    
     // specifies how number rows we want in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return test.count
@@ -50,6 +76,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.movieTitle.text = movieTitle
         cell.movieDescription.text = movieYear
+        loadImageFromUrl(url: movieImage, view: cell.movieImage)
+
         return cell
         
     }
