@@ -21,6 +21,7 @@ class movieDescriptionViewController: UIViewController {
     @IBOutlet weak var yearDescription: UILabel!
     @IBOutlet weak var imageDescription: UIImageView!
     @IBOutlet weak var Description: UILabel!
+    @IBOutlet weak var deleteMovie: UIButton!
     
     // load image
     func loadImageFromUrl(url: String, view: UIImageView){
@@ -57,9 +58,12 @@ class movieDescriptionViewController: UIViewController {
         
     }
     
-    
+    // delete movie when clicked on button
     @IBAction func deleteMovie(_ sender: AnyObject) {
+        
         watched = 1
+        deleteMovie.isHidden = true
+    
     }
     
 
@@ -82,6 +86,7 @@ class movieDescriptionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextView = segue.destination as? ViewController {
             nextView.watched = watched
+            nextView.rowNumber = rowNumber
         }
     }
 

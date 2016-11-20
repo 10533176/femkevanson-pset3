@@ -17,6 +17,7 @@ class WatchListViewCell: UITableViewCell {
     @IBOutlet weak var movieImage: UIImageView!
     
     @IBOutlet weak var checkWatched: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

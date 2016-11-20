@@ -43,7 +43,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
             tableView.isHidden = false
             addMovie.isHidden = false
         
-            // while loading
+            // when the request takes longer:
             movieTitle = "Loading..."
             movieDescription = ""
             imagehttps = ""
@@ -51,7 +51,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
 
     }
     
-    //only passing data when add button is clicked.
+    //only passing data to watchlist when add button is clicked.
     @IBAction func addMovie(_ sender: AnyObject) {
         
         addMovie.isHidden = true
@@ -68,20 +68,30 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         let url = URL(string: "https://omdbapi.com/?t="+newTitle+"&yplot=short&r=json")
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
-                // pas aan met een alert voor de user
                 print(error!)
                 return
             }
             
             guard let data = data else {
-                // pas aan met een alert voor de user
                 print("Data is empty")
                 return
             }
             
             let json = try! JSONSerialization.jsonObject(with: data, options: [])
             
-            //give values to variables
+            //check if movie is found
+            let responseValue = (json as AnyObject).value(forKey: "Response") as? String
+           
+            if responseValue == "False" {
+                let alertController = UIAlertController(title: "No movie was found", message: "Sorry!", preferredStyle: UIAlertControllerStyle.alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                }
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+
+            }
+            
+            // if movie is found, give values to display
             DispatchQueue.main.async {
                 self.movieTitle = ((json as AnyObject).value(forKey: "Title") as! String?)!
                 self.movieYear = ((json as AnyObject).value(forKey: "Year") as! String?)!
@@ -135,6 +145,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         cell.movieTitle.text = movieTitle
         cell.movieDescription.text = movieDescription
         loadImageFromUrl(url: imagehttps, view: cell.movieImage)
+       
         return cell
     }
 
@@ -144,6 +155,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
         // Dispose of any resources that can be recreated.
     }
     
+    // gives values for the added movie to watchlist view 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextView = segue.destination as? ViewController {
             nextView.movieTitle = movieTitleSend

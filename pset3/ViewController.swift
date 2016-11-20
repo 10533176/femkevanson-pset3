@@ -21,13 +21,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var arrayYear = [String]()
     var arrayImage = [String]()
     var arrayDescription = [String]()
-    var currentIndex: Int?
     var watched: Int?
+    var rowNumber: Int?
     
-
+    // deleting movie
+    func deleteMovie(index: Int) {
+        
+        self.arrayWatchList.remove(at: index)
+        self.arrayYear.remove(at: index)
+        self.arrayImage.remove(at: index)
+        self.arrayDescription.remove(at: index)
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // only fill array when movietitle is present
         if movieTitle.isEmpty {
             self.tableView.reloadData()
         }
@@ -43,10 +54,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // read from stored data
         let defaults = UserDefaults.standard
-        if let name = defaults.stringArray(forKey: "title"){
-            print (name)
+        if let name = defaults.stringArray(forKey: "title") {
             arrayWatchList.insert(contentsOf: name, at: 0)
-            print (arrayWatchList)
         }
         
         if let year = defaults.stringArray(forKey: "year") {
@@ -61,6 +70,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             arrayDescription.insert(contentsOf: description, at: 0)
         }
         
+        //when clicked on watched, add label to cell
+        if watched  == 1 {
+            deleteMovie(index: rowNumber!)
+            watched = 0
+        }
 
     }
 
@@ -94,7 +108,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         task.resume()
     }
     
-    // store arraywatchlist
+    // store arraywatchlist when new movie is add
     @IBAction func addNewMovie(_ sender: AnyObject) {
         let defaults = UserDefaults.standard
         defaults.set(arrayWatchList, forKey: "title")
@@ -104,8 +118,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-    // specifies how number rows we want in each section
+    // specifies number of rows we want in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return arrayWatchList.count
     }
     
@@ -116,30 +131,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchListViewCell
         
-        cell.checkWatched.isHidden = true
-        
-        //mark movie as watched 
-        if watched == 1 {
-            cell.checkWatched.isHidden = false
-        }
-        
         cell.movieTitle.text = arrayWatchList[indexPath.row]
         cell.movieDescription.text = arrayYear[indexPath.row]
         loadImageFromUrl(url: arrayImage[indexPath.row], view: cell.movieImage)
-        
-        currentIndex = indexPath.row
+
         return cell
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // when clicked to new view, save the info for the watchlist
         let defaults = UserDefaults.standard
         defaults.set(arrayWatchList, forKey: "title")
         defaults.set(arrayYear, forKey: "year")
         defaults.set(arrayImage, forKey: "image")
         defaults.set(arrayDescription, forKey: "description")
         
+            // send all the info to movie description when clicked on row.
             if let nextView = segue.destination as? movieDescriptionViewController {
                 nextView.movietitle = arrayWatchList[self.tableView.indexPathForSelectedRow!.row]
                 nextView.movieYear = arrayYear[self.tableView.indexPathForSelectedRow!.row]
