@@ -41,8 +41,7 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
             // send the request
             requestHTTPS(title: filledInTitle.text!)
             tableView.isHidden = false
-            addMovie.isHidden = false
-        
+ 
             // when the request takes longer:
             movieTitle = "Loading..."
             movieDescription = ""
@@ -81,24 +80,31 @@ class searchMovieViewController: UIViewController, UITableViewDataSource, UITabl
             
             //check if movie is found
             let responseValue = (json as AnyObject).value(forKey: "Response") as? String
-           
-            if responseValue == "False" {
-                let alertController = UIAlertController(title: "No movie was found", message: "Sorry!", preferredStyle: UIAlertControllerStyle.alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                }
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
+            print (responseValue!)
+            
+            if (responseValue!) == "False" {
+                
+                self.movieTitle = "Movie not found!!"
+                self.imagehttps = ""
+                self.tableView.reloadData()
 
             }
             
-            // if movie is found, give values to display
-            DispatchQueue.main.async {
-                self.movieTitle = ((json as AnyObject).value(forKey: "Title") as! String?)!
-                self.movieYear = ((json as AnyObject).value(forKey: "Year") as! String?)!
-                self.movieDescription = ((json as AnyObject).value(forKey: "Plot") as! String?)!
-                self.imagehttps = ((json as AnyObject).value(forKey: "Poster") as! String?)!
-                self.tableView.reloadData()
+            else {
+                
+                // if movie is found, give values to display
+                DispatchQueue.main.async {
+                    self.movieTitle = ((json as AnyObject).value(forKey: "Title") as! String?)!
+                    self.movieYear = ((json as AnyObject).value(forKey: "Year") as! String?)!
+                    self.movieDescription = ((json as AnyObject).value(forKey: "Plot") as! String?)!
+                    self.imagehttps = ((json as AnyObject).value(forKey: "Poster") as! String?)!
+                    self.tableView.reloadData()
+                    self.addMovie.isHidden = false
+                }
+                
             }
+            
+
         }
         
         task.resume()
